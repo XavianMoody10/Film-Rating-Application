@@ -5,6 +5,7 @@ import {
   Outlet,
   Route,
   RouterProvider,
+  ScrollRestoration,
 } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { TVShowsLibrary } from "./pages/TVShowsLibrary/TVShowsLibrary";
@@ -28,13 +29,14 @@ const App = () => {
               <Header />
               <SideNavigation />
               <Outlet />
+              <ScrollRestoration />
             </>
           }
         >
           <Route index element={<Home />} />
           <Route path="/movies" element={<MoviesLibrary />} />
           <Route path="/tv_shows" element={<TVShowsLibrary />} />
-          <Route path="/details/:id" element={<MediaDetails />} />
+          <Route path="/details/:media/:id" element={<MediaDetails />} />
         </Route>
       </Route>
     )

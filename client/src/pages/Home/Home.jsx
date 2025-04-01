@@ -52,7 +52,10 @@ export const Home = () => {
         <h2 className=" text-white font-bold text-2xl lg:text-3xl">
           Trending Movies
         </h2>
-        <MediaPosterSlider data={trendingMoviesQuery.data} />
+        <MediaPosterSlider
+          data={trendingMoviesQuery.data}
+          media_type={"movie"}
+        />
         <LoadingOverlay isLoading={trendingMoviesQuery.isFetching} />
         <ErrorMessageOverlay error={trendingMoviesQuery.error} />
       </section>
@@ -61,7 +64,7 @@ export const Home = () => {
         <h2 className=" text-white font-bold text-2xl lg:text-3xl">
           Trending TV Shows
         </h2>
-        <MediaPosterSlider data={trendingTVShowsQuery.data} />
+        <MediaPosterSlider data={trendingTVShowsQuery.data} media_type={"tv"} />
         <LoadingOverlay isLoading={trendingTVShowsQuery.isFetching} />
         <ErrorMessageOverlay error={trendingTVShowsQuery.error} />
       </section>

@@ -5,7 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import InfoOutlineIcon from "@mui/icons-material/InfoOutline";
 import placeholder from "../../assets/poster_placeholder.png";
 
-export const MediaPoster = ({ id, title, poster_path }) => {
+export const MediaPoster = ({ id, title, poster_path, media_type }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -34,13 +34,27 @@ export const MediaPoster = ({ id, title, poster_path }) => {
       >
         <div className=" absolute bottom-5 left-5 w-[80%] space-y-3">
           <p className=" text-xl text-white font-bold">{title}</p>
-          <Link
-            to={`/details/${id}`}
-            className=" bg-white text-lg font-medium w-fit py-2 px-7 rounded-sm flex items-center gap-2"
-          >
-            <span>Details</span>
-            <InfoOutlineIcon />
-          </Link>
+          <>
+            {media_type === "movie" && (
+              <Link
+                to={`/details/movie/${id}`}
+                className=" bg-white text-lg font-medium w-fit py-2 px-7 rounded-sm flex items-center gap-2"
+              >
+                <span>Details</span>
+                <InfoOutlineIcon />
+              </Link>
+            )}
+
+            {media_type === "tv" && (
+              <Link
+                to={`/details/tv_show/${id}`}
+                className=" bg-white text-lg font-medium w-fit py-2 px-7 rounded-sm flex items-center gap-2"
+              >
+                <span>Details</span>
+                <InfoOutlineIcon />
+              </Link>
+            )}
+          </>
         </div>
       </motion.div>
 

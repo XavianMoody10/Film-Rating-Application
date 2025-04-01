@@ -5,6 +5,10 @@ import trendingMoviesDayMockdata from "./mocksdata/trending/day/trendingMoviesDa
 import trendingMoviesWeekMockdata from "./mocksdata/trending/week/trendingMoviesWeek.mockdata.js";
 import trendingTVShowsWeekMockdata from "./mocksdata/trending/week/trendingTVShowsWeek.mockdata.js";
 import trendingTVShowsDayMockdata from "./mocksdata/trending/day/trendingTVShowsDay.mockdata.js";
+import nowPlayingMoviesMockdata from "./mocksdata/movies/nowPlayingMovies.mockdata.js";
+import popularMoviesMockdata from "./mocksdata/movies/popularMovies.mockdata.js";
+import topRatedMoviesMockdata from "./mocksdata/movies/topRatedMovies.mockdata.js";
+import upcomingMoviesMockdata from "./mocksdata/movies/upcomingMovies.mockdata.js";
 
 export const handlers = [
   http.get(
@@ -39,6 +43,39 @@ export const handlers = [
 
         if (time_window === "week") {
           return HttpResponse.json(trendingTVShowsWeekMockdata);
+        }
+      }
+
+      return HttpResponse.text("Error getting data", { status: 404 });
+    }
+  ),
+
+  http.get(
+    "https://api.themoviedb.org/3/:media/:list",
+    async ({ params, request }) => {
+      const { media, list } = params;
+      const url = new URL(request.url);
+      const page = Number(url.searchParams.get("page"));
+
+      if (media === "movie") {
+        if (list === "now_playing") {
+          const results = nowPlayingMoviesMockdata.find((p) => p.page === page);
+          return HttpResponse.json(results);
+        }
+
+        if (list === "popular") {
+          const results = popularMoviesMockdata.find((p) => p.page === page);
+          return HttpResponse.json(results);
+        }
+
+        if (list === "top_rated") {
+          const results = topRatedMoviesMockdata.find((p) => p.page === page);
+          return HttpResponse.json(results);
+        }
+
+        if (list === "upcoming") {
+          const results = upcomingMoviesMockdata.find((p) => p.page === page);
+          return HttpResponse.json(results);
         }
       }
 

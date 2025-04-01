@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 
-export const MediaBackdropSlider = ({ data, autoPlay }) => {
+export const MediaBackdropSlider = ({ data, autoPlay, media_type }) => {
   const results = data?.results || [];
 
   const slides = results.map((s) => {
@@ -15,6 +15,7 @@ export const MediaBackdropSlider = ({ data, autoPlay }) => {
           title={s.title || s.name || s.original_name}
           backdrop_path={s.backdrop_path}
           overview={s.overview}
+          media_type={s.media_type || media_type}
         />
       </SwiperSlide>
     );
