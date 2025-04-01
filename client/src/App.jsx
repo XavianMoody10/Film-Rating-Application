@@ -13,6 +13,9 @@ import { MediaDetails } from "./pages/MediaDetails/MediaDetails";
 import { Header } from "./layouts/Header/Header";
 import { SideNavigation } from "./layouts/SideNavigation/SideNavigation";
 import { SideNavigationProvider } from "./context/SideNavigationProvider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const App = () => {
   // Routes (React Router)
@@ -31,16 +34,18 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/movies" element={<MoviesLibrary />} />
           <Route path="/tv_shows" element={<TVShowsLibrary />} />
-          <Route path="/:id" element={<MediaDetails />} />
+          <Route path="/details/:id" element={<MediaDetails />} />
         </Route>
       </Route>
     )
   );
 
   return (
-    <SideNavigationProvider>
-      <RouterProvider router={router} />
-    </SideNavigationProvider>
+    <QueryClientProvider client={queryClient}>
+      <SideNavigationProvider>
+        <RouterProvider router={router} />
+      </SideNavigationProvider>
+    </QueryClientProvider>
   );
 };
 
