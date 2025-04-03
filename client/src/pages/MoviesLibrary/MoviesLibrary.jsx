@@ -1,13 +1,13 @@
 import React from "react";
 import { Main } from "../../layouts/Main/Main";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMediaByList } from "../../services/media.services";
 import { useSearchParams } from "react-router-dom";
 import { LoadingOverlay } from "../../components/LoadingOverlay/LoadingOverlay";
 import { ErrorMessageOverlay } from "../../components/ErrorMessageOverlay/ErrorMessageOverlay";
 import { MediaSelection } from "../../components/MediaSelection/MediaSelection";
 import { MediaPagination } from "../../components/MediaPagination/MediaPagination";
 import { MediaPosterGrid } from "../../components/MediaPosterGrid/MediaPosterGrid";
+import { fetchMoviesByList } from "../../services/movies.services";
 
 export const MoviesLibrary = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,7 +29,7 @@ export const MoviesLibrary = () => {
     // "list" value tells server to retrieve movies based on list. example: now_playing, popular.
     // "page" value tells server to retrieve movies from a specific page number
     // "en-US" is the langauge the data is returned.
-    queryFn: () => fetchMediaByList("movie", list, page, "en-US"),
+    queryFn: () => fetchMoviesByList(list, page, "en-US"),
     retry: false, // Stops data from being fetched multiple times if it fails the first time.
     staleTime: 300000, // After 5 minutes, the cached data is considered stale and will be refetched.
   });
@@ -50,7 +50,7 @@ export const MoviesLibrary = () => {
           />
         </div>
 
-        <MediaPosterGrid data={moviesQuery.data} />
+        <MediaPosterGrid data={moviesQuery.data} media_type={"movie"} />
 
         <MediaPagination
           amoutOfPages={3}

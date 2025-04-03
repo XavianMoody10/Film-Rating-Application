@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import { server } from "./src/mocks/node.js";
 import trendingRouter from "./src/routes/trending.route.js";
-import mediaRouter from "./src/routes/media.route.js";
+import moviesRouter from "./src/routes/movies.route.js";
+import tvShowsRouter from "./src/routes/tvShows.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -13,7 +14,8 @@ app.use(cors());
 
 // Routes
 app.use("/trending", trendingRouter);
-app.use("/media", mediaRouter);
+app.use("/movies", moviesRouter);
+app.use("/tv_shows", tvShowsRouter);
 
 // Server
 app.listen(PORT, () => {

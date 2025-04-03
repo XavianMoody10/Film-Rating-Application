@@ -1,7 +1,7 @@
 import React from "react";
 import { MediaPoster } from "../MediaPoster/MediaPoster";
 
-export const MediaPosterGrid = ({ data }) => {
+export const MediaPosterGrid = ({ data, media_type }) => {
   const moviePosters = data?.results.map((m) => {
     if (m?.back === null) {
       return;
@@ -11,7 +11,8 @@ export const MediaPosterGrid = ({ data }) => {
           key={m.id}
           id={m.id}
           poster_path={m.poster_path}
-          title={m.title || m.name || m.original_title}
+          title={m.title || m.name || m.original_name}
+          media_type={media_type}
         />
       );
     }

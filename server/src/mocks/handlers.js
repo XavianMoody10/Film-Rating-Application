@@ -9,6 +9,10 @@ import nowPlayingMoviesMockdata from "./mocksdata/movies/nowPlayingMovies.mockda
 import popularMoviesMockdata from "./mocksdata/movies/popularMovies.mockdata.js";
 import topRatedMoviesMockdata from "./mocksdata/movies/topRatedMovies.mockdata.js";
 import upcomingMoviesMockdata from "./mocksdata/movies/upcomingMovies.mockdata.js";
+import tvShowsAiringTodayMockdata from "./mocksdata/tvshows/tvShowsAiringToday.mockdata.js";
+import tvShowsOnTheAirMockdata from "./mocksdata/tvshows/tvShowsOnTheAir.mockdata.js";
+import popularTVShowsMockdata from "./mocksdata/tvshows/popularTVShows,mockdata.js";
+import topRatedTVShowsMockdata from "./mocksdata/tvshows/topRatedTVShows.mockdata.js";
 
 export const handlers = [
   http.get(
@@ -51,32 +55,61 @@ export const handlers = [
   ),
 
   http.get(
-    "https://api.themoviedb.org/3/:media/:list",
+    "https://api.themoviedb.org/3/movie/:list",
     async ({ params, request }) => {
-      const { media, list } = params;
+      const { list } = params;
       const url = new URL(request.url);
       const page = Number(url.searchParams.get("page"));
 
-      if (media === "movie") {
-        if (list === "now_playing") {
-          const results = nowPlayingMoviesMockdata.find((p) => p.page === page);
-          return HttpResponse.json(results);
-        }
+      if (list === "now_playing") {
+        const results = nowPlayingMoviesMockdata.find((p) => p.page === page);
+        return HttpResponse.json(results);
+      }
 
-        if (list === "popular") {
-          const results = popularMoviesMockdata.find((p) => p.page === page);
-          return HttpResponse.json(results);
-        }
+      if (list === "popular") {
+        const results = popularMoviesMockdata.find((p) => p.page === page);
+        return HttpResponse.json(results);
+      }
 
-        if (list === "top_rated") {
-          const results = topRatedMoviesMockdata.find((p) => p.page === page);
-          return HttpResponse.json(results);
-        }
+      if (list === "top_rated") {
+        const results = topRatedMoviesMockdata.find((p) => p.page === page);
+        return HttpResponse.json(results);
+      }
 
-        if (list === "upcoming") {
-          const results = upcomingMoviesMockdata.find((p) => p.page === page);
-          return HttpResponse.json(results);
-        }
+      if (list === "upcoming") {
+        const results = upcomingMoviesMockdata.find((p) => p.page === page);
+        return HttpResponse.json(results);
+      }
+
+      return HttpResponse.text("Error getting data", { status: 404 });
+    }
+  ),
+
+  http.get(
+    "https://api.themoviedb.org/3/tv/:list",
+    async ({ params, request }) => {
+      const { list } = params;
+      const url = new URL(request.url);
+      const page = Number(url.searchParams.get("page"));
+
+      if (list === "airing_today") {
+        const results = tvShowsAiringTodayMockdata.find((p) => p.page === page);
+        return HttpResponse.json(results);
+      }
+
+      if (list === "on_the_air") {
+        const results = tvShowsOnTheAirMockdata.find((p) => p.page === page);
+        return HttpResponse.json(results);
+      }
+
+      if (list === "popular") {
+        const results = popularTVShowsMockdata.find((p) => p.page === page);
+        return HttpResponse.json(results);
+      }
+
+      if (list === "top_rated") {
+        const results = topRatedTVShowsMockdata.find((p) => p.page === page);
+        return HttpResponse.json(results);
       }
 
       return HttpResponse.text("Error getting data", { status: 404 });

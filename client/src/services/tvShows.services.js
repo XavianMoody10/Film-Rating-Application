@@ -1,12 +1,11 @@
 import axios from "axios";
 
-async function fetchMediaByList(media, list, page, language) {
+async function fetchTVShowsList(list, page, language) {
   try {
-    const url = "http://localhost:3001/media";
+    const url = "http://localhost:3001/tv_shows";
 
     const response = await axios.get(url, {
       params: {
-        media,
         list,
         page,
         language,
@@ -23,4 +22,4 @@ async function fetchMediaByList(media, list, page, language) {
   }
 }
 
-export { fetchMediaByList };
+export { fetchTVShowsList };

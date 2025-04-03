@@ -54,6 +54,10 @@ export const Home = () => {
         </h2>
         <MediaPosterSlider
           data={trendingMoviesQuery.data}
+          // In the API, theres no way to differentiat between what are movies and tv shows
+          // I needed to add this prop to tell the component whether the data displayed are movies or tv shows
+          // Doing this allows me to do certain things.
+          // For example, Theres certain API calls that will only work based on if a film is a movie or tv show, which are located in the details page. In order for the requests to work properly, i have to give the details page a way to differentiate between whether to fetch a movie or tv show. When a user clicks on a film details button, they will be navigated to the details page, which has a "media" path parameter of either a value of "movie" or "tv" along with the film "id".
           media_type={"movie"}
         />
         <LoadingOverlay isLoading={trendingMoviesQuery.isFetching} />

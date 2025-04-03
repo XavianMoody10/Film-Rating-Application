@@ -2,12 +2,11 @@ import axios from "axios";
 import { checkIfOptionIsValid } from "../helpers/checkIfOptionIsValid.js";
 import { apiErrorHandling } from "../helpers/apiErrorHandling.js";
 
-async function getMediaByList(req, res) {
-  const { media, list, language, page } = req.query;
-  const listOptions = ["now_playing", "popular", "top_rated", "upcoming"];
-  const mediaOptions = ["movie", "tv"];
+async function getTVShowsByList(req, res) {
+  const { list, language, page } = req.query;
+  const listOptions = ["airing_today", "on_the_air", "popular", "top_rated"];
 
-  const url = `https://api.themoviedb.org/3/${media}/${list}`;
+  const url = `https://api.themoviedb.org/3/tv/${list}`;
 
   const options = {
     method: "GET",
@@ -22,14 +21,6 @@ async function getMediaByList(req, res) {
   };
 
   try {
-    if (!media) {
-      throw { status: 404, message: '"media" parameter is null' };
-    }
-
-    if (media && !checkIfOptionIsValid(mediaOptions, media)) {
-      throw { status: 404, message: 'Invalid value for "media"' };
-    }
-
     if (!list) {
       throw { status: 404, message: '"list" parameter is null' };
     }
@@ -50,4 +41,4 @@ async function getMediaByList(req, res) {
   }
 }
 
-export { getMediaByList };
+export { getTVShowsByList };
