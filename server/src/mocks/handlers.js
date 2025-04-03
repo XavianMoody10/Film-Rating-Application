@@ -50,69 +50,137 @@ export const handlers = [
         }
       }
 
-      return HttpResponse.text("Error getting data", { status: 404 });
+      return HttpResponse.text("Error getting trending data", { status: 404 });
     }
   ),
 
   http.get(
-    "https://api.themoviedb.org/3/movie/:list",
-    async ({ params, request }) => {
-      const { list } = params;
+    "https://api.themoviedb.org/3/movie/now_playing",
+    async ({ request }) => {
       const url = new URL(request.url);
       const page = Number(url.searchParams.get("page"));
 
-      if (list === "now_playing") {
-        const results = nowPlayingMoviesMockdata.find((p) => p.page === page);
-        return HttpResponse.json(results);
-      }
+      const results = nowPlayingMoviesMockdata.find((p) => p.page === page);
+      return HttpResponse.json(results);
 
-      if (list === "popular") {
-        const results = popularMoviesMockdata.find((p) => p.page === page);
-        return HttpResponse.json(results);
-      }
-
-      if (list === "top_rated") {
-        const results = topRatedMoviesMockdata.find((p) => p.page === page);
-        return HttpResponse.json(results);
-      }
-
-      if (list === "upcoming") {
-        const results = upcomingMoviesMockdata.find((p) => p.page === page);
-        return HttpResponse.json(results);
-      }
-
-      return HttpResponse.text("Error getting data", { status: 404 });
+      return HttpResponse.text("Error list of movies data", { status: 404 });
     }
   ),
 
   http.get(
-    "https://api.themoviedb.org/3/tv/:list",
-    async ({ params, request }) => {
-      const { list } = params;
+    "https://api.themoviedb.org/3/movie/popular",
+    async ({ request }) => {
       const url = new URL(request.url);
       const page = Number(url.searchParams.get("page"));
 
-      if (list === "airing_today") {
-        const results = tvShowsAiringTodayMockdata.find((p) => p.page === page);
-        return HttpResponse.json(results);
-      }
+      const results = popularMoviesMockdata.find((p) => p.page === page);
+      return HttpResponse.json(results);
 
-      if (list === "on_the_air") {
-        const results = tvShowsOnTheAirMockdata.find((p) => p.page === page);
-        return HttpResponse.json(results);
-      }
-
-      if (list === "popular") {
-        const results = popularTVShowsMockdata.find((p) => p.page === page);
-        return HttpResponse.json(results);
-      }
-
-      if (list === "top_rated") {
-        const results = topRatedTVShowsMockdata.find((p) => p.page === page);
-        return HttpResponse.json(results);
-      }
-
-      return HttpResponse.text("Error getting data", { status: 404 });
+      return HttpResponse.text("Error list of movies data", { status: 404 });
     }
   ),
+
+  http.get(
+    "https://api.themoviedb.org/3/movie/top_rated",
+    async ({ request }) => {
+      const url = new URL(request.url);
+      const page = Number(url.searchParams.get("page"));
+
+      const results = topRatedMoviesMockdata.find((p) => p.page === page);
+      return HttpResponse.json(results);
+
+      return HttpResponse.text("Error list of movies data", { status: 404 });
+    }
+  ),
+
+  http.get(
+    "https://api.themoviedb.org/3/movie/upcoming",
+    async ({ request }) => {
+      const url = new URL(request.url);
+      const page = Number(url.searchParams.get("page"));
+
+      const results = upcomingMoviesMockdata.find((p) => p.page === page);
+      return HttpResponse.json(results);
+
+      return HttpResponse.text("Error list of movies data", { status: 404 });
+    }
+  ),
+
+  http.get(
+    "https://api.themoviedb.org/3/tv/airing_today",
+    async ({ request }) => {
+      const url = new URL(request.url);
+      const page = Number(url.searchParams.get("page"));
+
+      const results = tvShowsAiringTodayMockdata.find((p) => p.page === page);
+      return HttpResponse.json(results);
+
+      return HttpResponse.text("Failed getting tv shows airing today", {
+        status: 404,
+      });
+    }
+  ),
+
+  http.get(
+    "https://api.themoviedb.org/3/tv/on_the_air",
+    async ({ request }) => {
+      const url = new URL(request.url);
+      const page = Number(url.searchParams.get("page"));
+
+      const results = tvShowsOnTheAirMockdata.find((p) => p.page === page);
+      return HttpResponse.json(results);
+
+      return HttpResponse.text("Failed getting tv shows on the air", {
+        status: 404,
+      });
+    }
+  ),
+
+  http.get("https://api.themoviedb.org/3/tv/popular", async ({ request }) => {
+    const url = new URL(request.url);
+    const page = Number(url.searchParams.get("page"));
+
+    const results = popularTVShowsMockdata.find((p) => p.page === page);
+    return HttpResponse.json(results);
+
+    return HttpResponse.text("Failed getting tv shows on the air", {
+      status: 404,
+    });
+  }),
+
+  http.get("https://api.themoviedb.org/3/tv/top_rated", async ({ request }) => {
+    const url = new URL(request.url);
+    const page = Number(url.searchParams.get("page"));
+
+    const results = topRatedTVShowsMockdata.find((p) => p.page === page);
+    return HttpResponse.json(results);
+
+    return HttpResponse.text("Failed getting tv shows on the air", {
+      status: 404,
+    });
+  }),
+
+  http.get("https://api.themoviedb.org/3/tv/:id", async ({ params }) => {
+    const { id } = params;
+
+    const results = allTrendingDayMockdata.results.find((r) => r.id == id);
+
+    if (results) {
+      return HttpResponse.json(results);
+    }
+
+    return HttpResponse.text("Error getting data", { status: 404 });
+  }),
+
+  http.get("https://api.themoviedb.org/3/movie/:id", async ({ params }) => {
+    const { id } = params;
+
+    const results = allTrendingDayMockdata.results.find((r) => r.id == id);
+
+    if (results) {
+      return HttpResponse.json(results);
+    }
+
+    return HttpResponse.text("Error getting data", { status: 404 });
+  }),
 ];

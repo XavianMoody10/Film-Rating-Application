@@ -10,11 +10,12 @@ import {
 import { Home } from "./pages/Home/Home";
 import { TVShowsLibrary } from "./pages/TVShowsLibrary/TVShowsLibrary";
 import { MoviesLibrary } from "./pages/MoviesLibrary/MoviesLibrary";
-import { MediaDetails } from "./pages/MediaDetails/MediaDetails";
+import { TVShowDetails } from "./pages/TVShowDetails/TVShowDetails";
 import { Header } from "./layouts/Header/Header";
 import { SideNavigation } from "./layouts/SideNavigation/SideNavigation";
 import { SideNavigationProvider } from "./context/SideNavigationProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MovieDetails } from "./pages/MovieDetails/MovieDetails";
 
 const queryClient = new QueryClient();
 
@@ -36,7 +37,8 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/movies" element={<MoviesLibrary />} />
           <Route path="/tv_shows" element={<TVShowsLibrary />} />
-          <Route path="/details/:media/:id" element={<MediaDetails />} />
+          <Route path="/details/movie/:id" element={<MovieDetails />} />
+          <Route path="/details/tv_show/:id" element={<TVShowDetails />} />
         </Route>
       </Route>
     )

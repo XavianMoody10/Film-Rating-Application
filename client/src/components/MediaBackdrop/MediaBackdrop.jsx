@@ -13,7 +13,7 @@ export const MediaBackdrop = ({
 
   return (
     <div
-      className=" h-[750px] bg-top bg-cover"
+      className=" h-[750px] bg-top bg-cover relative"
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
       <div className=" absolute top-0 left-0 right-0 bottom-0 bg-black/60">

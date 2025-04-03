@@ -13,7 +13,7 @@ export const Home = () => {
     queryKey: ["trending-all"],
     // Paramaters Explained
     // "all" value tells server to retrieve top trending movies and tv shows in one request.
-    // "day" value tells server to retrieve top trending movies and tv shows for the current day/
+    // "day" value tells server to retrieve top trending movies and tv shows for the current day.
     // "en-US" is the langauge the data is returned.
     queryFn: () => fetchTrendingMediaData("all", "day", "en-US"),
     retry: false, // Stops data from being fetched multiple times if it fails the first time.
