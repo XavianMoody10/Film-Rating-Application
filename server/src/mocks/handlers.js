@@ -1,11 +1,11 @@
-import { http, HttpResponse } from "msw";
+import { delay, http, HttpResponse } from "msw";
+import trendingAllMockdata from "./mockdata/trendingAll.mockdata.js";
 
 export const handlers = [
-  http.get("https://example.com/user", () => {
-    return HttpResponse.json({
-      id: "c7b3d8e0-5e0b-4b0f-8b3a-3b9f4b3d3b3d",
-      firstName: "John",
-      lastName: "Maverick",
-    });
+  http.get("https://api.themoviedb.org/3/trending/all/day", async () => {
+    await delay(3000);
+    return HttpResponse.json(trendingAllMockdata);
+    // return HttpResponse.json("Error getting data", { status: 404 });
+    // return HttpResponse.error();
   }),
 ];

@@ -8,8 +8,8 @@ export const Header = () => {
   );
 
   return (
-    <header className=" fixed top-0 w-full p-5">
-      <div className=" bg-white w-full flex justify-end rounded-sm max-w-[1700px] mx-auto">
+    <header className=" fixed top-0 w-full py-5 z-50">
+      <div className=" bg-white flex justify-end rounded-sm w-[90%] max-w-[1700px] mx-auto">
         <Hamburger
           size={27}
           toggle={setSideNavigationIsOpen}

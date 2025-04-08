@@ -17,12 +17,12 @@ export const SideNavigation = () => {
       initial={{ x: "-130%" }}
       animate={{ x: sideNavigationIsOpen ? 0 : "-130%" }}
       transition={{ stiffness: 0 }}
-      className=" fixed left-5 top-20 bg-white p-2 rounded-sm"
+      className=" fixed left-5 top-20 bg-white p-2 rounded-sm z-50"
     >
       <nav>
         <ul className=" space-y-5">
           <li>
-            <Link to={"/trending"} className={linkClass}>
+            <Link to={"/"} className={linkClass}>
               <TrendingUpOutlinedIcon sx={{ fontSize: 40 }} />
             </Link>
           </li>
@@ -40,7 +40,7 @@ export const SideNavigation = () => {
           </li>
 
           <li>
-            <Link to={"/auth/login"} className={linkClass}>
+            <Link to={"/login"} className={linkClass}>
               <PersonOutlinedIcon sx={{ fontSize: 40 }} />
             </Link>
           </li>
