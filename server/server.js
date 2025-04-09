@@ -3,15 +3,17 @@ import cors from "cors";
 import { server } from "./src/mocks/node.js";
 import mongoose from "mongoose";
 import trendingRouter from "./src/routes/trending.route.js";
+import authRouter from "./src/routes/auth.route.js";
 
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({ credentials: true }));
 app.use(express.json());
 
 // Routes
 app.use("/trending", trendingRouter);
+app.use("/auth", authRouter);
 
 // Server
 app.listen(process.env.PORT, () => {

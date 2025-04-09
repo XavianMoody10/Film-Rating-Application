@@ -73,64 +73,71 @@ export const Home = () => {
 
   return (
     <Main>
-      <section className=" w-[90%] max-w-[1700px] mx-auto">
-        <div className=" min-h-[88vh] relative">
-          <LoadingOverlay isLoading={allTrendingQuery.isFetching} />
+      <div className=" relative pt-24">
+        <section className=" w-[90%] max-w-[1700px] mx-auto">
+          <div className=" min-h-[88vh] relative">
+            <LoadingOverlay isLoading={allTrendingQuery.isFetching} />
 
-          {allTrendingQuery.isFetched && allTrendingQuery.isSuccess && (
-            <MediaBackdropSlider
-              results={allTrendingQuery.data.results}
-              autoPlay={true}
-            />
-          )}
+            {allTrendingQuery.isFetched && allTrendingQuery.isSuccess && (
+              <MediaBackdropSlider
+                results={allTrendingQuery.data.results}
+                autoPlay={true}
+              />
+            )}
 
-          {allTrendingQuery.isError && (
-            <ErrorMessageOverlay message={allTrendingQuery.error.message} />
-          )}
-        </div>
-      </section>
+            {allTrendingQuery.isError && (
+              <ErrorMessageOverlay message={allTrendingQuery.error.message} />
+            )}
+          </div>
+        </section>
 
-      <section className=" w-[90%] max-w-[1700px] mx-auto mt-10 space-y-4">
-        <h2 className=" text-2xl text-white font-extrabold min-[800px]:text-3xl">
-          Trending Movies
-        </h2>
+        <section className=" w-[90%] max-w-[1700px] mx-auto mt-10 space-y-4">
+          <h2 className=" text-2xl text-white font-extrabold min-[800px]:text-3xl">
+            Trending Movies
+          </h2>
 
-        <div className=" min-h-[300px] lg:min-h-[400px] relative">
-          <LoadingOverlay isLoading={trendingMoviesQuery.isFetching} />
+          <div className=" min-h-[300px] lg:min-h-[400px] relative">
+            <LoadingOverlay isLoading={trendingMoviesQuery.isFetching} />
 
-          {trendingMoviesQuery.isFetched && trendingMoviesQuery.isSuccess && (
-            <MediaPosterSlider
-              results={trendingMoviesQuery.data.results}
-              autoPlay={true}
-            />
-          )}
+            {trendingMoviesQuery.isFetched && trendingMoviesQuery.isSuccess && (
+              <MediaPosterSlider
+                results={trendingMoviesQuery.data.results}
+                autoPlay={true}
+              />
+            )}
 
-          {trendingMoviesQuery.isError && (
-            <ErrorMessageOverlay message={trendingMoviesQuery.error.message} />
-          )}
-        </div>
-      </section>
+            {trendingMoviesQuery.isError && (
+              <ErrorMessageOverlay
+                message={trendingMoviesQuery.error.message}
+              />
+            )}
+          </div>
+        </section>
 
-      <section className=" w-[90%] max-w-[1700px] mx-auto mt-10 space-y-4">
-        <h2 className=" text-2xl text-white font-extrabold min-[800px]:text-3xl">
-          Trending TV Shows
-        </h2>
+        <section className=" w-[90%] max-w-[1700px] mx-auto mt-10 space-y-4">
+          <h2 className=" text-2xl text-white font-extrabold min-[800px]:text-3xl">
+            Trending TV Shows
+          </h2>
 
-        <div className=" min-h-[300px] lg:min-h-[400px] relative">
-          <LoadingOverlay isLoading={trendingTVShowsQuery.isFetching} />
+          <div className=" min-h-[300px] lg:min-h-[400px] relative">
+            <LoadingOverlay isLoading={trendingTVShowsQuery.isFetching} />
 
-          {trendingTVShowsQuery.isFetched && trendingTVShowsQuery.isSuccess && (
-            <MediaPosterSlider
-              results={trendingTVShowsQuery.data.results}
-              autoPlay={true}
-            />
-          )}
+            {trendingTVShowsQuery.isFetched &&
+              trendingTVShowsQuery.isSuccess && (
+                <MediaPosterSlider
+                  results={trendingTVShowsQuery.data.results}
+                  autoPlay={true}
+                />
+              )}
 
-          {trendingTVShowsQuery.isError && (
-            <ErrorMessageOverlay message={trendingTVShowsQuery.error.message} />
-          )}
-        </div>
-      </section>
+            {trendingTVShowsQuery.isError && (
+              <ErrorMessageOverlay
+                message={trendingTVShowsQuery.error.message}
+              />
+            )}
+          </div>
+        </section>
+      </div>
     </Main>
   );
 };
